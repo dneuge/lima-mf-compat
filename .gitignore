@@ -1,0 +1,7 @@
+.idea
+
+target
+
+ManualTest*
+*.nocommit
+*.nocommit.*
