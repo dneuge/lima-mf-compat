@@ -5,6 +5,8 @@ import static de.energiequant.limamf.compat.utils.CollectionUtils.exactlyOne;
 import static de.energiequant.limamf.compat.utils.DOMUtils.findChildElementsNamed;
 import static de.energiequant.limamf.compat.utils.DOMUtils.getAttribute;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
 
-public class ConfigItem {
+public class ConfigItem implements ConfigNode {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConfigItem.class);
 
     private final UUID guid;
@@ -94,5 +96,10 @@ public class ConfigItem {
             .ifPresent(out::setDescription);
 
         return out;
+    }
+
+    @Override
+    public Collection<Object> getChildren() {
+        return Collections.singletonList(settings);
     }
 }

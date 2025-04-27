@@ -80,6 +80,15 @@ public class ConnectorConfiguration {
                               .add(item);
     }
 
+    public Collection<ConfigItem> getItems() {
+        Collection<ConfigItem> out = new ArrayList<>();
+
+        configItemsByDirection.values()
+                              .forEach(out::addAll);
+
+        return out;
+    }
+
     public Collection<ConfigItem> getItems(ConfigItem.Direction direction) {
         return new ArrayList<>(configItemsByDirection.getOrDefault(direction, Collections.emptyList()));
     }

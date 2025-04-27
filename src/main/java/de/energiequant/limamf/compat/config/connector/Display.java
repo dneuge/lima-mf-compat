@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
 
 import de.energiequant.limamf.compat.utils.Maps;
 
-public class Display {
+public class Display implements ModuleBindable {
     private static final Logger LOGGER = LoggerFactory.getLogger(Display.class);
 
     private final String serial;
@@ -44,7 +44,8 @@ public class Display {
         return Optional.of(decoder.apply(displayNode));
     }
 
-    public String getSerial() {
-        return serial;
+    @Override
+    public Optional<String> getSerial() {
+        return Optional.of(serial);
     }
 }
