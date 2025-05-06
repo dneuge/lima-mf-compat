@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -91,6 +93,25 @@ public class ConnectorConfiguration {
 
     public Collection<ConfigItem> getItems(ConfigItem.Direction direction) {
         return new ArrayList<>(configItemsByDirection.getOrDefault(direction, Collections.emptyList()));
+    }
+
+    public Set<String> getSerials() {
+        Set<String> out = new HashSet<>();
+        collectSerials(out, getItems());
+        return out;
+    }
+
+    private void collectSerials(Collection<String> collector, Collection<?> objects) {
+        for (Object obj : objects) {
+            if (obj instanceof ModuleBindable) {
+                ((ModuleBindable) obj).getSerial()
+                                      .ifPresent(collector::add);
+            }
+
+            if (obj instanceof ConfigNode) {
+                collectSerials(collector, ((ConfigNode) obj).getChildren());
+            }
+        }
     }
 
     private static class MissingDependency extends RuntimeException {
