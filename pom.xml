@@ -8,7 +8,7 @@
 
     <name>LiMa-MF MobiFlight Compatibility</name>
     <description>unofficial library to work with MobiFlight devices and configurations in Java</description>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <url>https://github.com/dneuge/lima-mf-compat</url>
