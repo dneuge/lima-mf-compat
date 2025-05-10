@@ -67,8 +67,8 @@ public class ConfigItem implements ConfigNode {
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
 
     public ConfigItem setDescription(String description) {
