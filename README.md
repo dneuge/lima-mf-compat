@@ -5,9 +5,9 @@
 This library establishes basic unofficial compatibility with [MobiFlight](https://www.mobiflight.com/) device firmware
 and configuration files for platform-independent use with Java:
 
-- partial serialization/deserialization of device firmware protocol messages
-- partial parsing of device-side configurations as received over `GetConfig`/`Info` messages
-- partial parsing of `.mcc` configuration files
+- partial* serialization/deserialization of device firmware protocol messages
+- partial* parsing of device-side configurations as received over `GetConfig`/`Info` messages
+- partial* parsing of `.mcc` configuration files
 
 All current generally available LTS versions of Java are supported (8, 11, 17, 21).
 
@@ -16,6 +16,10 @@ prime application using this library, which means the supported aspects of MobiF
 currently also driven by the needs of that application. However, as a general compatibility library can be much more
 useful (e.g. reusable in other applications) and even be developed separately, it has been kept separate from the
 beginning.
+
+*) Support is currently limited to what the hardware panel(s) supported by the LiMa-MF Panel Connector actually need.
+As more panels get added or the implementation gets generalized to instead run the original .mcc-provided state machine
+that support will be extended further.
 
 ## License
 
