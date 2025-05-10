@@ -12,6 +12,11 @@ import org.w3c.dom.Node;
 
 import de.energiequant.limamf.compat.utils.Maps;
 
+/**
+ * A "display" in terms of MobiFlight configuration. May be encountered standalone while not all types are supported by
+ * this library; refer to specialized implementations instead to get more meaningful information
+ * (e.g. {@link OutputDisplay}).
+ */
 public class Display implements ModuleBindable {
     private static final Logger LOGGER = LoggerFactory.getLogger(Display.class);
 
@@ -21,11 +26,22 @@ public class Display implements ModuleBindable {
         Maps.entry("Output", OutputDisplay::new)
     );
 
+    /**
+     * Base constructor reading common information from given DOM node.
+     *
+     * @param displayNode node to parse
+     */
     protected Display(Node displayNode) {
         this.serial = getAttribute(displayNode, "serial")
             .orElseThrow(() -> new IllegalArgumentException("display must be linked to a serial"));
     }
 
+    /**
+     * Parses the given XML DOM {@link Node} to a {@link Display}, using more specific implementations if available.
+     *
+     * @param displayNode XML DOM {@link Node} to parse
+     * @return parsed {@link Display}
+     */
     static Optional<Display> fromXML(Node displayNode) {
         String type = getAttribute(displayNode, "type")
             .orElseThrow(() -> new IllegalArgumentException("display must specify type"));

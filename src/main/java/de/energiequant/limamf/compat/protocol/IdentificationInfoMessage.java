@@ -14,6 +14,11 @@ public class IdentificationInfoMessage extends InfoMessage {
     private final String version;
     private final String coreVersion;
 
+    /**
+     * Parses the given {@link CommandMessage} to an {@link IdentificationInfoMessage}.
+     *
+     * @param msg message to parse
+     */
     public IdentificationInfoMessage(CommandMessage msg) {
         super(msg);
 
@@ -29,22 +34,55 @@ public class IdentificationInfoMessage extends InfoMessage {
         this.coreVersion = fields.get(4);
     }
 
+    /**
+     * Returns the indicated MobiFlight firmware/hardware interface type.
+     *
+     * @return MobiFlight firmware/hardware interface type
+     */
     public String getMobiflightType() {
         return mobiflightType;
     }
 
+    /**
+     * Returns the indicated MobiFlight module name.
+     *
+     * @return MobiFlight module name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns the indicated MobiFlight module serial ID.
+     *
+     * @return MobiFlight module serial
+     */
     public String getSerial() {
         return serial;
     }
 
+    /**
+     * Returns the indicated MobiFlight module "version".
+     * <p>
+     * Note that a second "core version" also gets indicated: {@link #getCoreVersion()}
+     * </p>
+     *
+     * @return MobiFlight module "version"
+     * @see #getCoreVersion()
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     * Returns the indicated MobiFlight module "core version".
+     * <p>
+     * Note that a second "version" also gets indicated: {@link #getVersion()}
+     * </p>
+     *
+     * @return MobiFlight module "core version"
+     * @see #getVersion()
+     */
     public String getCoreVersion() {
         return coreVersion;
     }

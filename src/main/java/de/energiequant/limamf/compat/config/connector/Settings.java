@@ -16,6 +16,9 @@ import org.w3c.dom.Node;
 
 import de.energiequant.limamf.compat.utils.Maps;
 
+/**
+ * Base class holding "settings" in terms of MobiFlight configuration.
+ */
 public class Settings implements ModuleBindable, ConfigNode {
     private static final Logger LOGGER = LoggerFactory.getLogger(Settings.class);
 
@@ -27,6 +30,11 @@ public class Settings implements ModuleBindable, ConfigNode {
         Maps.entry("InputMultiplexer", InputMultiplexerSettings::new)
     );
 
+    /**
+     * Base constructor reading common information from given DOM node.
+     *
+     * @param node node to parse
+     */
     protected Settings(Node node) {
         this.display = atMostOne(findChildElementsNamed(node, "display"))
             .flatMap(Display::fromXML)
@@ -35,6 +43,11 @@ public class Settings implements ModuleBindable, ConfigNode {
         this.serial = getAttribute(node, "serial").orElse(null);
     }
 
+    /**
+     * Returns the {@link Display}, if configured.
+     *
+     * @return associated {@link Display}
+     */
     public Optional<Display> getDisplay() {
         return Optional.ofNullable(display);
     }
@@ -44,6 +57,12 @@ public class Settings implements ModuleBindable, ConfigNode {
         return Optional.ofNullable(serial);
     }
 
+    /**
+     * Parses the given XML DOM {@link Node} to {@link Settings}, using specific implementations if available.
+     *
+     * @param node XML DOM {@link Node} to parse
+     * @return parsed {@link Settings}
+     */
     static Settings fromXML(Node node) {
         String type = getAttribute(node, "type").orElse(null);
         if (type == null) {

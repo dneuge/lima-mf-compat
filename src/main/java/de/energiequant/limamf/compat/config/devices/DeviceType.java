@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * A hardware component (device in MF terms) to interface with.
+ * A hardware component (device in MobiFlight terms) to interface with.
  */
 public enum DeviceType {
     NOT_SET(0),
@@ -61,14 +61,30 @@ public enum DeviceType {
         this.deprecated = deprecated;
     }
 
+    /**
+     * Returns the corresponding device type ID for communication with MobiFlight firmware.
+     *
+     * @return device type ID used by MobiFlight firmware
+     */
     public int getFirmwareEncoding() {
         return firmwareEncoding;
     }
 
+    /**
+     * Indicates whether the device type has been marked as deprecated in MobiFlight firmware source code.
+     *
+     * @return {@code true} if marked as deprecated in MobiFlight firmware, {@code false} if not
+     */
     public boolean isDeprecated() {
         return deprecated;
     }
 
+    /**
+     * Resolves the given device type ID, as used by MobiFlight firmware, to a {@link DeviceType} enum.
+     *
+     * @param encoding device type ID used by MobiFlight firmware
+     * @return corresponding {@link DeviceType} enum, if known
+     */
     public static Optional<DeviceType> fromFirmwareEncoding(int encoding) {
         return Optional.ofNullable(BY_FIRMWARE_ENCODING.get(encoding));
     }

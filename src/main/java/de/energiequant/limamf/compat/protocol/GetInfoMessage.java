@@ -15,6 +15,11 @@ public class GetInfoMessage extends CommandMessage {
         "2.5.1"
     ));
 
+    /**
+     * Creates a new message requesting device identification.
+     *
+     * @see IdentificationInfoMessage
+     */
     public GetInfoMessage() {
         super(CommandType.GET_INFO, Collections.emptyList());
     }

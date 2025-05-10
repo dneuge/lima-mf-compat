@@ -19,10 +19,22 @@ public class OutputConfiguration extends DeviceConfiguration {
         this.pin = pin;
     }
 
+    /**
+     * Returns the pin ID referring to this output.
+     *
+     * @return output pin ID
+     */
     public int getPin() {
         return pin;
     }
 
+    /**
+     * Parses an {@link OutputConfiguration} from the given protocol encoding used by MobiFlight
+     * firmware.
+     *
+     * @param s protocol encoding used by MobiFlight firmware
+     * @return decoded hardware description
+     */
     public static OutputConfiguration parseFirmwareFormat(String s) {
         Matcher matcher = FIRMWARE_PATTERN.matcher(s);
         if (!matcher.matches()) {

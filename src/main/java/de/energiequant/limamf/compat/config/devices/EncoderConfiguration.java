@@ -23,6 +23,13 @@ public class EncoderConfiguration extends DeviceConfiguration {
         this.type = type;
     }
 
+    /**
+     * Parses an {@link EncoderConfiguration} from the given protocol encoding used by MobiFlight
+     * firmware.
+     *
+     * @param s protocol encoding used by MobiFlight firmware
+     * @return decoded hardware description
+     */
     public static EncoderConfiguration parseFirmwareFormat(String s) {
         Matcher matcher = FIRMWARE_PATTERN.matcher(s);
         if (!matcher.matches()) {

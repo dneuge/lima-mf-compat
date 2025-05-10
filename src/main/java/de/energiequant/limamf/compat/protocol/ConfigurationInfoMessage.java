@@ -18,6 +18,11 @@ public class ConfigurationInfoMessage extends InfoMessage {
     private final String rawConfiguration;
     private final InterfaceConfiguration configuration;
 
+    /**
+     * Parses the given {@link CommandMessage} to a {@link ConfigurationInfoMessage}.
+     *
+     * @param msg message to parse
+     */
     public ConfigurationInfoMessage(CommandMessage msg) {
         super(msg);
 
@@ -37,10 +42,23 @@ public class ConfigurationInfoMessage extends InfoMessage {
         configuration = parsed;
     }
 
+    /**
+     * Returns the raw encoded device-side configuration.
+     * <p>
+     * This is mainly useful for debugging; you probably want to use {@link #getConfiguration()} instead.
+     * </p>
+     *
+     * @return raw configuration received from module
+     */
     public String getRawConfiguration() {
         return rawConfiguration;
     }
 
+    /**
+     * Returns the {@link InterfaceConfiguration} active on the module at time of reception.
+     *
+     * @return {@link InterfaceConfiguration} active on module
+     */
     public InterfaceConfiguration getConfiguration() {
         return configuration;
     }

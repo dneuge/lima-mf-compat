@@ -68,10 +68,21 @@ public enum CommandType {
         this.firmwareEncoding = firmwareEncoding;
     }
 
+    /**
+     * Returns the corresponding type ID for communication with MobiFlight firmware.
+     *
+     * @return type ID used by MobiFlight firmware
+     */
     public int getFirmwareEncoding() {
         return firmwareEncoding;
     }
 
+    /**
+     * Resolves the given type ID, as used by MobiFlight firmware, to a {@link CommandType} enum.
+     *
+     * @param encoding type ID used by MobiFlight firmware
+     * @return corresponding {@link CommandType} enum, if known
+     */
     public static Optional<CommandType> fromFirmwareEncoding(int encoding) {
         return Optional.ofNullable(BY_FIRMWARE_ENCODING.get(encoding));
     }

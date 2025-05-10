@@ -20,6 +20,12 @@ public class CommandMessageDecoder {
         Maps.entry(CommandType.INFO, InfoMessage::decode)
     );
 
+    /**
+     * Decodes a single {@link CommandMessage} from the given raw protocol message.
+     *
+     * @param s raw protocol message to decode
+     * @return decoded {@link CommandMessage}
+     */
     public CommandMessage deserialize(String s) {
         LinkedList<String> fields = new LinkedList<>();
 

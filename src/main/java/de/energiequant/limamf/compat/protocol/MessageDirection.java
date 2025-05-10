@@ -1,5 +1,8 @@
 package de.energiequant.limamf.compat.protocol;
 
+/**
+ * Marks the direction in which a MobiFlight protocol message can flow.
+ */
 public enum MessageDirection {
     /**
      * The message is only supposed to be received from an interface.

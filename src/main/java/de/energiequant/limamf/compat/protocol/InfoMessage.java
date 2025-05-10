@@ -12,6 +12,14 @@ public abstract class InfoMessage extends CommandMessage {
         super(msg);
     }
 
+    /**
+     * Decodes the given message to either an {@link IdentificationInfoMessage} or a {@link ConfigurationInfoMessage}
+     * depending on its content format. This is necessary as the MobiFlight protocol uses the same type ID for
+     * both messages.
+     *
+     * @param msg message to decode
+     * @return parsed message, type depending on format
+     */
     public static InfoMessage decode(CommandMessage msg) {
         // Info messages can transport either device identification or configurations.
         // A vague guess we rely on is that device configurations usually start with a digit on the first field,

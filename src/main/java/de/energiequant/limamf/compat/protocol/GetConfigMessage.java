@@ -15,6 +15,11 @@ public class GetConfigMessage extends CommandMessage {
         "2.5.1"
     ));
 
+    /**
+     * Creates a new message requesting the device configuration currently active on the module.
+     *
+     * @see ConfigurationInfoMessage
+     */
     public GetConfigMessage() {
         super(CommandType.GET_CONFIG, Collections.emptyList());
     }

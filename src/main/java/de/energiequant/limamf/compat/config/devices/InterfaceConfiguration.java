@@ -6,8 +6,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import de.energiequant.limamf.compat.protocol.GetConfigMessage;
 import de.energiequant.limamf.compat.utils.Maps;
 
+/**
+ * Describes all hardware components ("devices") configured on a MobiFlight module.
+ * <p>
+ * Hardware descriptions are provided by module manufacturers and persisted on each MobiFlight module. These
+ * descriptions assign component types (such as digital signals/buttons or rotary encoder inputs) and designate pins to
+ * be used for input or output. They are also used to address/name components ("devices" in MobiFlight terms) on a first
+ * level. More detailed information, such as naming channels of multiplexed components, is beyond the scope of this
+ * hardware-level description and thus requires further host-side configuration to make sense of.
+ * </p>
+ */
 public class InterfaceConfiguration {
     private final List<DeviceConfiguration> devices;
 
@@ -24,10 +35,22 @@ public class InterfaceConfiguration {
         this.devices = Collections.unmodifiableList(devices);
     }
 
+    /**
+     * Returns all described hardware components (devices in MobiFlight terms).
+     *
+     * @return all hardware components described by this configuration
+     */
     public List<DeviceConfiguration> getDevices() {
         return devices;
     }
 
+    /**
+     * Parses the given string to an {@link InterfaceConfiguration} according to the given protocol encoding used by
+     * MobiFlight firmware (e.g. received via {@link GetConfigMessage}).
+     *
+     * @param s protocol encoding used by MobiFlight firmware
+     * @return decoded hardware configuration
+     */
     public static InterfaceConfiguration parseFirmwareFormat(String s) {
         List<DeviceConfiguration> devices = new ArrayList<>();
 

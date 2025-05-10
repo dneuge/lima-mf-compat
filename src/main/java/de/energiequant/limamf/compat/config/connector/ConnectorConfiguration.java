@@ -25,11 +25,24 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * Host-side device configuration as used by MobiFlight Connector for transfer.
+ * <p>
+ * Note that not all information is currently parsed and the internal data structures are specific to this library and
+ * thus may differ from original MobiFlight formats.
+ * </p>
+ */
 public class ConnectorConfiguration {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectorConfiguration.class);
 
     private final Map<ConfigItem.Direction, Collection<ConfigItem>> configItemsByDirection = new EnumMap<>(ConfigItem.Direction.class);
 
+    /**
+     * Loads the given MobiFlight Connector configuration file ({@code .mcc} file type).
+     *
+     * @param path file to load
+     * @return parsed configuration
+     */
     public static ConnectorConfiguration fromXML(File path) {
         Document doc = null;
         try {
@@ -82,6 +95,11 @@ public class ConnectorConfiguration {
                               .add(item);
     }
 
+    /**
+     * Returns all configuration items, for any direction.
+     *
+     * @return all configuration items
+     */
     public Collection<ConfigItem> getItems() {
         Collection<ConfigItem> out = new ArrayList<>();
 
@@ -91,10 +109,21 @@ public class ConnectorConfiguration {
         return out;
     }
 
+    /**
+     * Returns all configuration items for the given direction.
+     *
+     * @param direction direction to return configuration item for
+     * @return all configuration items for given direction
+     */
     public Collection<ConfigItem> getItems(ConfigItem.Direction direction) {
         return new ArrayList<>(configItemsByDirection.getOrDefault(direction, Collections.emptyList()));
     }
 
+    /**
+     * Returns all module serials mentioned in the configuration.
+     *
+     * @return all mentioned module serials
+     */
     public Set<String> getSerials() {
         Set<String> out = new HashSet<>();
         collectSerials(out, getItems());
