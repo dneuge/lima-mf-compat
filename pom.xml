@@ -35,6 +35,7 @@
         <mockito.version>5.3.1</mockito.version>
 
         <!-- build dependencies -->
+        <maven.plugin.dependency.version>3.6.1</maven.plugin.dependency.version>
         <maven.plugin.jar.version>3.2.0</maven.plugin.jar.version>
         <maven.plugin.surefire.version>3.0.0-M5</maven.plugin.surefire.version>
     </properties>
@@ -110,6 +111,12 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.plugin.dependency.version}</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
