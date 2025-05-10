@@ -7,8 +7,8 @@
     <artifactId>mf-compat</artifactId>
 
     <name>LiMa-MF MobiFlight Compatibility</name>
-    <description>unofficial library to work with MobiFlight devices and configuration files in Java</description>
-    <version>0.1-SNAPSHOT</version>
+    <description>unofficial library to work with MobiFlight devices and configurations in Java</description>
+    <version>0.1</version>
     <packaging>jar</packaging>
 
     <url>https://github.com/dneuge/lima-mf-compat</url>
@@ -35,9 +35,14 @@
         <mockito.version>5.3.1</mockito.version>
 
         <!-- build dependencies -->
+        <maven.plugin.compiler.version>3.14.0</maven.plugin.compiler.version>
         <maven.plugin.dependency.version>3.6.1</maven.plugin.dependency.version>
+        <maven.plugin.gpg.version>3.2.7</maven.plugin.gpg.version>
         <maven.plugin.jar.version>3.2.0</maven.plugin.jar.version>
+        <maven.plugin.javadoc.version>3.2.0</maven.plugin.javadoc.version>
+        <maven.plugin.source.version>3.2.0</maven.plugin.source.version>
         <maven.plugin.surefire.version>3.0.0-M5</maven.plugin.surefire.version>
+        <sonatype.plugin.centralPublishing.version>0.7.0</sonatype.plugin.centralPublishing.version>
     </properties>
 
     <scm>
@@ -119,6 +124,46 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.plugin.source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/ManualTest*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.plugin.javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceFileExcludes>
+                        <sourceFileExcludes>**/ManualTest*</sourceFileExcludes>
+                    </sourceFileExcludes>
+                    <!-- detectOfflineLinks needs to be disabled or artifacts will link to invalid URLs derived from project.url -->
+                    <detectOfflineLinks>false</detectOfflineLinks>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.plugin.surefire.version}</version>
             </plugin>
@@ -137,4 +182,51 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${maven.plugin.compiler.version}</version>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/ManualTest*</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven.plugin.gpg.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <keyname>${gpg.keyname}</keyname>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${sonatype.plugin.centralPublishing.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
