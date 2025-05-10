@@ -12,7 +12,7 @@ public class InputMultiplexerSettings extends Settings {
     private final String multiplexerName;
     private final int dataPin;
 
-    public InputMultiplexerSettings(Node settingsNode) {
+    InputMultiplexerSettings(Node settingsNode) {
         super(settingsNode);
 
         if (!getSerial().isPresent()) {

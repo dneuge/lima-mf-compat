@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
 public class EncoderSettings extends Settings {
     private final String encoderName;
 
-    public EncoderSettings(Node settingsNode) {
+    EncoderSettings(Node settingsNode) {
         super(settingsNode);
 
         if (!getSerial().isPresent()) {

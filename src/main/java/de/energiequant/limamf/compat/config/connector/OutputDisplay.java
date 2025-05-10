@@ -11,7 +11,7 @@ public class OutputDisplay extends Display {
     private final int pinBrightness;
     private final boolean pwm;
 
-    public OutputDisplay(Node displayNode) {
+    OutputDisplay(Node displayNode) {
         super(displayNode);
 
         this.pin = getAttribute(displayNode, "pin")
