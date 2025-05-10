@@ -10,6 +10,11 @@ import de.energiequant.limamf.compat.utils.Numbers;
 /**
  * Stripped-down implementation for basic communication with MobiFlight within the constraints of the specific
  * surrounding application.
+ * <p>
+ * See the package JavaDoc for a protocol description.
+ * </p>
+ *
+ * @see de.energiequant.limamf.compat.protocol
  */
 public class CommandMessage {
     private final CommandType type;
