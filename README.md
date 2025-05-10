@@ -1,5 +1,7 @@
 # LiMa-MF Java Compatibility Library for MobiFlight Devices/Resources
 
+[![Maven Central](https://img.shields.io/maven-central/v/de.energiequant.limamf/mf-compat.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/de.energiequant.limamf/mf-compat)
+[![JavaDoc](https://javadoc.io/badge2/de.energiequant.limamf/mf-compat/javadoc.svg)](https://javadoc.io/doc/de.energiequant.limamf/mf-compat)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 This library establishes basic unofficial compatibility with [MobiFlight](https://www.mobiflight.com/) device firmware
