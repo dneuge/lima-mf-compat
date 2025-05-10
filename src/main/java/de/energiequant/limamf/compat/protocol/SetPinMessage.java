@@ -25,7 +25,7 @@ public class SetPinMessage extends CommandMessage {
         "2.5.1"
     ));
 
-    public static final int STATE_DIGITAL_ON = 0xFF;
+    private static final int STATE_DIGITAL_ON = 0xFF;
     private static final int STATE_DIGITAL_OFF = 0x00;
 
     private final int pin;
@@ -67,6 +67,16 @@ public class SetPinMessage extends CommandMessage {
     @Override
     public String toString() {
         return "SetPinMessage(pin=" + pin + ", state=" + state + ")";
+    }
+
+    /**
+     * Checks if the given value is understood as digital (fully on/off, no PWM) in terms of a {@link SetPinMessage}.
+     *
+     * @param value value to check
+     * @return {@code true} if the value represents a digital state, {@code false} if it requires PWM
+     */
+    public static boolean isDigitalState(int value) {
+        return (value == STATE_DIGITAL_ON) || (value == STATE_DIGITAL_OFF);
     }
 
     public static Builder builder() {
