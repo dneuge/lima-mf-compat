@@ -8,8 +8,6 @@ import java.util.List;
  * @see GetInfoMessage
  */
 public abstract class InfoMessage extends CommandMessage {
-    public static final int TYPE_ID = 10;
-
     protected InfoMessage(CommandMessage msg) {
         super(msg);
     }

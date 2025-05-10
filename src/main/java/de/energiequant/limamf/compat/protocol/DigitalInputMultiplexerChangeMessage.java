@@ -5,8 +5,6 @@ import java.util.List;
 import de.energiequant.limamf.compat.utils.Numbers;
 
 public class DigitalInputMultiplexerChangeMessage extends CommandMessage {
-    public static final int TYPE_ID = 30;
-
     private final String name;
     private final int channel;
     private final Event event;

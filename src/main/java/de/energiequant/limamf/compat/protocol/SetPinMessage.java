@@ -19,8 +19,6 @@ import de.energiequant.limamf.compat.utils.Numbers;
  * possible but may yield unwanted results, value range should probably be restricted to 0..255.
  */
 public class SetPinMessage extends CommandMessage {
-    public static final int TYPE_ID = 2;
-
     private static final Set<String> TESTED_FIRMWARE_VERSIONS = new HashSet<>(Arrays.asList(
         "2.5.1"
     ));
@@ -32,7 +30,7 @@ public class SetPinMessage extends CommandMessage {
     private final int state;
 
     protected SetPinMessage(int pin, int state) {
-        super(TYPE_ID, encodeFields(pin, state));
+        super(CommandType.SET_PIN, encodeFields(pin, state));
 
         this.pin = pin;
         this.state = state;

@@ -6,8 +6,6 @@ import java.util.List;
  * Transports an event detected from a rotary encoder.
  */
 public class EncoderChangeMessage extends CommandMessage {
-    public static final int TYPE_ID = 6;
-
     public enum Event {
         LEFT(0, false, false),
         LEFT_FAST(1, false, true),

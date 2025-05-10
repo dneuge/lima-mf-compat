@@ -11,8 +11,6 @@ import java.util.Set;
  * @see IdentificationInfoMessage
  */
 public class GetInfoMessage extends CommandMessage {
-    public static final int TYPE_ID = 9;
-
     private static final Set<String> TESTED_FIRMWARE_VERSIONS = new HashSet<>(Arrays.asList(
         "2.5.1"
     ));
