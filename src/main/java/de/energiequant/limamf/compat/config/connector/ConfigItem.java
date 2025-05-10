@@ -33,7 +33,7 @@ public class ConfigItem implements ConfigNode {
             this.xmlParentElementName = xmlParentElementName;
         }
 
-        public static Optional<Direction> fromXmlParentElementName(String xmlParentElementName) {
+        static Optional<Direction> fromXmlParentElementName(String xmlParentElementName) {
             for (Direction direction : values()) {
                 if (direction.xmlParentElementName.equals(xmlParentElementName)) {
                     return Optional.of(direction);
@@ -80,7 +80,7 @@ public class ConfigItem implements ConfigNode {
         return settings;
     }
 
-    public static ConfigItem fromXML(ConfigItem.Direction direction, Node node) {
+    static ConfigItem fromXML(ConfigItem.Direction direction, Node node) {
         UUID guid = getAttribute(node, "guid").map(UUID::fromString).orElseThrow(() -> new IllegalArgumentException("config item without GUID"));
 
         Settings settings = Settings.fromXML(exactlyOne(findChildElementsNamed(node, "settings")));

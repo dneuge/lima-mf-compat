@@ -26,7 +26,7 @@ public class Display implements ModuleBindable {
             .orElseThrow(() -> new IllegalArgumentException("display must be linked to a serial"));
     }
 
-    public static Optional<Display> fromXML(Node displayNode) {
+    static Optional<Display> fromXML(Node displayNode) {
         String type = getAttribute(displayNode, "type")
             .orElseThrow(() -> new IllegalArgumentException("display must specify type"));
 

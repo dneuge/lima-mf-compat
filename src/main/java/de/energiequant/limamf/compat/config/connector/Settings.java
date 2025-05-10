@@ -44,7 +44,7 @@ public class Settings implements ModuleBindable, ConfigNode {
         return Optional.ofNullable(serial);
     }
 
-    public static Settings fromXML(Node node) {
+    static Settings fromXML(Node node) {
         String type = getAttribute(node, "type").orElse(null);
         if (type == null) {
             return new Settings(node);
