@@ -29,7 +29,7 @@ public class SetPinMessage extends CommandMessage {
     private final int pin;
     private final int state;
 
-    protected SetPinMessage(int pin, int state) {
+    private SetPinMessage(int pin, int state) {
         super(CommandType.SET_PIN, encodeFields(pin, state));
 
         this.pin = pin;
